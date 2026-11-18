@@ -49,4 +49,14 @@ class FuncionarioTest {
                 new FuncionarioCLT(1, "João", "52998224725", -100, 500)
         );
     }
+    
+    @Test
+void naoDeveAceitarCpfComLetras() {
+    assertThrows(IllegalArgumentException.class, () ->
+            new FuncionarioCLT(
+                    1, "João", "abc529.982.247-25xyz", 2000, 500
+            )
+    );
+}
+    
 }

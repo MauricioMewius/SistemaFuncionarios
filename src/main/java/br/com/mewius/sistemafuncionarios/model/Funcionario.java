@@ -64,10 +64,11 @@ public abstract class Funcionario implements Identificavel {
     }
 
     private boolean validarCpf(String cpf) {
-        if (cpf == null) return false;
+    if (cpf == null || !cpf.matches("\\d{11}|\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+        return false;
+    }
 
-        String numero = cpf.replaceAll("[^0-9]", "");
-
+    String numero = cpf.replaceAll("[^0-9]", "");
         if (!numero.matches("\\d{11}") || numero.matches("(\\d)\\1{10}")) {
             return false;
         }

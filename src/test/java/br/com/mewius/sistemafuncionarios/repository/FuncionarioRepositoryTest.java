@@ -126,4 +126,26 @@ public void deveRemoverFuncionario() {
     assertEquals(0, repository.listarTodos().size());
 }
 
+@Test
+public void naoDeveEncontrarFuncionarioAposRemocao() {
+
+    FuncionarioRepository repository = new FuncionarioRepository();
+
+    FuncionarioCLT funcionario = new FuncionarioCLT(
+            8,
+            "Ana Souza",
+            "529.982.247-25",
+            2000.00,
+            500.00
+    );
+
+    repository.cadastrar(funcionario);
+    repository.remover(8);
+
+    assertThrows(
+            FuncionarioNaoEncontradoException.class,
+            () -> repository.buscarPorCodigo(8)
+    );
+}
+
 }
